@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+    <bean id = "myPointcutAspect" class = "org.example.AppConfig"/>
+
+    <aop:config>
+        <aop:aspect id = "myAdvice" ref = "myPointcutAspect">
+
+            <aop:pointcut id = "myPointcutExpression"
+                          expression = "execution(* org.example.pointcuts.Item.printItemDetails())" />
+
+            <aop:before pointcut-ref = "myPointcutExpression" method = "printLogo"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="itemBeanOne" class="org.example.pointcuts.Item">
+        <property name="itemId" value="102" />
+        <property name="itemName" value="Bread" />
+        <property name="itemPrice" value="8.25" />
+        <property name="availableQuantity" value="10" />
+    </bean>
+
+</beans>
