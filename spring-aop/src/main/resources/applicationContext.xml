@@ -13,7 +13,6 @@
 
             <aop:pointcut id = "myPointcutExpression"
                           expression = "execution(* org.example.pointcuts.Item.printItemDetails())" />
-
             <aop:before pointcut-ref = "myPointcutExpression" method = "printLogo"/>
         </aop:aspect>
     </aop:config>
